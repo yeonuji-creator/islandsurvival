@@ -183,7 +183,7 @@ while True:
                             bag['고기'] += meat
                         else:
                             bag['고기'] += meat
-                        leather = random.randint(0+difficulty, 3 + difficulty)
+                        leather = random.randint(0+difficulty, 2 + difficulty)
                         onebyone(f"가죽을 {leather}개 얻었습니다.")
                         bagsize -= leather
 
@@ -195,6 +195,7 @@ while True:
                         else:
                             bag['가죽'] += leather
                             bagsize -= leather
+                        onebyone(f"남은 가방 공간: {bagsize}")
                     else:
                         onebyone(f"당신은 {animal}를 놓쳤습니다.")
             else:
@@ -210,6 +211,7 @@ while True:
                 else:
                     bag[sourse] += numlc
                     bagsize -= numlc
+                onebyone(f"남은 가방 공간: {bagsize}")
 
 
             if bagsize <= 0:
@@ -235,7 +237,9 @@ while True:
                 if bag['목재'] > 0:
                     onebyone("목재를 태워 몸을 녹입니다.")
                     bag['목재'] -= 1
-                    bagsize -= 1
+                    bagsize += 1
+                    onebyone(f"남은 가방 공간: {bagsize}")
+
                 else:
                     onebyone("너무 추워서 나아갈 수 없습니다.")
                     break
@@ -245,7 +249,9 @@ while True:
                 if bag['식수'] > 0:
                     onebyone("물통을 사용하여 목을 축입니다.")
                     bag['식수'] -= 1
-                    bagsize -= 1
+                    bagsize += 1
+                    onebyone(f"남은 가방 공간: {bagsize}")
+
                 else:
                     onebyone("목이 말라서 나아갈 수 없습니다.")
                     break
@@ -255,7 +261,9 @@ while True:
                 if bag['고기'] > 0:
                     onebyone("고기를 먹어 배를 채웁니다.")
                     bag['고기'] -= 1
-                    bagsize -= 1
+                    bagsize += 1
+                    onebyone(f"남은 가방 공간: {bagsize}")
+
                 else:
                     onebyone("배가 고파서 나아갈 수 없습니다.")
                     break
