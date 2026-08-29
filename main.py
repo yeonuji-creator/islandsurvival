@@ -1,9 +1,3 @@
-'''
-냥냥고양이 :3
-'''
-
-
-
 import pygame
 import time
 
