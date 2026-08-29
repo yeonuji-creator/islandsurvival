@@ -39,3 +39,5 @@ motion = input(f"""{state['day']}일차: 할 행동을 고르시오.
 3: 아무것도 안 하고 쉬기
 """, end = "")
 
+if motion == "1":'
+    print("사냥을 합니다.")
