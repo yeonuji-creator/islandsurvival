@@ -1,5 +1,5 @@
 '''
-만들다보니까 조금 오버했음;;
+만들다보니까 
 '''
 
 
@@ -153,6 +153,7 @@ while True:
                 }
             }
         lc, lclist = random.choice(list(location.items()))
+        #155번째 줄이 무슨 뜻이예요?
         numlc = random.randint(1, 5)
         onebyone(f"당신은 {lc}에 도착했습니다.")
         
