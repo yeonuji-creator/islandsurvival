@@ -1,5 +1,5 @@
 '''
-만들다보니까 
+약간 어려워요
 '''
 
 
@@ -163,9 +163,11 @@ while True:
             onebyone("탐험 중...")
             time.sleep(0.5)
             if random.random() < 0.4:
+                #random.random() 이 뭐예요
                 animal = random.choice(lclist['동물'])
                 onebyone(f"당신은 {animal}을 발견했습니다!")
                 difficulty = lclist['동물'].index(animal)
+                #이건 모르누ㅜㄴ 거예요
                 if lclist['동물'][-1] == animal:
                     onebyone(f"당신은 {animal}에게서 도망쳤습니다.")
                     break
