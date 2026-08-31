@@ -35,7 +35,7 @@ def onebyone(sentence, s_end = '\n'):
         pygame.mixer.music.load("audio/type.mp3")
 
         pygame.mixer.music.play()
-        time.sleep(0.3)
+        time.sleep(0.15)
 
     print(s_end, end = '')
 
