@@ -1,16 +1,17 @@
 '''
-약간 어려워요
+어렵네요
 '''
-
 
 
 import pygame
 import time
 import random
 
+# 모듈 불러오기
+
 pygame.init()
 
-
+# 초기화
 
 state = {"day":1, "thirst":100}
 
@@ -26,6 +27,8 @@ inventory = {
         '레전드신기한꽃' : 0
     }
 
+# 인벤토리(딕셔너리)
+
 def onebyone(sentence, s_end = '\n'):
     for i in sentence:
         print(i, end="", flush = True)
@@ -33,9 +36,14 @@ def onebyone(sentence, s_end = '\n'):
 
         pygame.mixer.music.play()
         time.sleep(0.3)
-        
 
     print(s_end, end = '')
+
+
+def line():
+    print("=" * 50)
+
+# 함수
 
 
 
@@ -44,6 +52,8 @@ onebyone("당신의 닉네임을 입력하십시오: ",'')
 name = input()
 
 state["name"] = name
+
+line()
 
 print("당신은 아주 큰 쓰나미에 휩쓸려서 무인도에 왔습니다. 생존하세요.")
 
@@ -79,7 +89,7 @@ while True:
         
     #여기서부터 선생님 코드임! 2번 탐험~
     elif motion == "2":
-        print("=======================================")
+        print("")
         print("탐험 전 챙길 물건들을 고르시오.")
         bagsize = 30
         bag = {
@@ -97,10 +107,10 @@ while True:
         while gogame != "a":
             
             print(f"\n남은 공간: {bagsize}\n")
-            print(f"1: 식수 (남은 갯수 {inventory['식수']}개)")
-            print(f"2: 고기 (남은 갯수 {inventory['고기']}개)")
-            print(f"3: 목재 (남은 갯수 {inventory['목재']}개)")
-            gogame = input("\n선택한 물건의 번호와 갯수를 입력하시오(예 1,2)\n시작하려면 a를 입력하세요.\n: ")
+            print(f"1: 식수 (남은 개수 {inventory['식수']}개)")
+            print(f"2: 고기 (남은 개수 {inventory['고기']}개)")
+            print(f"3: 목재 (남은 개수 {inventory['목재']}개)")
+            gogame = input("\n선택한 물건의 번호와 개수를 입력하시오(예 1,2)\n시작하려면 a를 입력하세요.\n: ")
             if gogame[0] == "1":
                 if inventory['식수'] >= int(gogame[2]):
                     inventory['식수'] -= int(gogame[2])
@@ -122,19 +132,19 @@ while True:
                     bagsize -= int(gogame[2])
                 else:
                     print("목재가 없습니다.")
-        print("=======================================")
+        line()
         onebyone("탐험을 시작합니다.")
 
         location = {
             '숲' :{
-                '자원': ['목재', '풀', '식수'], 
-                '동물': ['토끼', '조금큰토끼', '왕토끼', '사슴', '늑대']
+                '자원': ['목재', '풀', '식수', '산딸기'], 
+                '동물': ['왕토끼', '토끼', '조금큰토끼', '사슴', '늑대']
                 },
             '해변':{
-                '자원': ['목재', '돌', '식수'], 
+                '자원': ['목재', '돌', '식수', '모래'], 
                 '동물': ['게', '물고기', '왕물고기', '거북이', '상어']
                 }, 
-            '동굴':{"자원": ['돌', '석영', '식수', '목재'], 
+            '동굴':{"자원": ['돌', '석영', '식수', '목재', '보석'], 
                 '동물': ['박쥐', '큰박쥐', '뱀', '도롱뇽','곰']
                 }, 
             '산':{
@@ -142,7 +152,7 @@ while True:
                 '동물': ['산양', '큰산양', '독수리', '바위너구리', '호랑이']
                 }, 
             '강':{'자원': ['식수', '풀', '목재'], 
-                '동물': ['물고기', '개구리', '황소개구리', '수달','피라니아']
+                '동물': ['물고기', '개구리', '황소개구리', '수달','피라냐']
                 }, 
             '호수':{'자원': ['식수', '목재', '풀', '석영'], 
                 '동물': ['개구리', '물고기', '잉어', '비단잉어','여기있으면절대안되는아주아주무서운괴물']
@@ -153,7 +163,6 @@ while True:
                 }
             }
         lc, lclist = random.choice(list(location.items()))
-        #155번째 줄이 무슨 뜻이예요?
         numlc = random.randint(1, 5)
         onebyone(f"당신은 {lc}에 도착했습니다.")
         
@@ -163,11 +172,9 @@ while True:
             onebyone("탐험 중...")
             time.sleep(0.5)
             if random.random() < 0.4:
-                #random.random() 이 뭐예요
                 animal = random.choice(lclist['동물'])
                 onebyone(f"당신은 {animal}을 발견했습니다!")
                 difficulty = lclist['동물'].index(animal)
-                #이건 모르누ㅜㄴ 거예요
                 if lclist['동물'][-1] == animal:
                     onebyone(f"당신은 {animal}에게서 도망쳤습니다.")
                     break
@@ -270,9 +277,9 @@ while True:
                 else:
                     onebyone("배가 고파서 나아갈 수 없습니다.")
                     break
-            print("=======================================")
+            line()
 
-        print("=======================================")
+        line()
         onebyone("집 가는 중...")
         onebyone("탐험을 마치고 돌아왔습니다.")
         onebyone("다음의 물건을 가지고 왔습니다.")
@@ -280,7 +287,7 @@ while True:
         for name, item in bag.items():
             inventory[name] += item
         onebyone("인벤토리에 저장 완료.")
-        print("=======================================")
+        line()
 
         onebyone("식사를 하고 하루를 마칩니다. (식수, 목재, 고기 하나씩 필요.)")
         print(f"\n가지고 있는 양 : [ 식수 :{inventory['식수']}, 목재 : {inventory['목재']}, 고기 : {inventory['고기']}]\n")
@@ -296,12 +303,11 @@ while True:
             break
         state['day'] += 1
         state['thirst'] -= 90
-        print("=======================================\n\n")
+        line()
+        print("\n")
     else:
         print("다시 입력하세요.")
 
-
-
-'''
-이메일 주소(된다면 입력)
-'''
+        '''
+        이메일 주소(된다면 입력)
+        '''
