@@ -308,7 +308,7 @@ while True:
         onebyone("식사를 하고 하루를 마칩니다. (식수, 목재, 고기 하나씩 필요.)")
         print(f"\n가지고 있는 양 : [ 식수 :{inventory['식수']}, 목재 : {inventory['목재']}, 고기 : {inventory['고기']}]\n")
 
-        if inventory['고기'] > 0 and inventory['식수'] > 0 and inventory['목재']:
+        if inventory['고기'] > 0 and inventory['식수'] > 0 and inventory['목재'] > 0:
             onebyone("당신은 고기를 구워먹고 물도 마셨습니다.")
             
             inventory['식수'] -= 1
