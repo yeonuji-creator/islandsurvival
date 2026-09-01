@@ -73,7 +73,18 @@ while True:
     if motion == '1':
         pass
     elif motion == '3':
-        pass
+        print("아무것도 안하고 쉽니다.")
+
+        onebyone("식사를 하고 하루를 마칩니다. (식수, 목재, 고기 하나씩 필요.)")
+        print(f"\n가지고 있는 양 : [ 식수 :{inventory['식수']}, 목재 : {inventory['목재']}, 고기 : {inventory['고기']}]\n")
+        
+        if inventory['고기'] > 0 and inventory['식수'] > 0 and inventory['목재']:
+            onebyone("당신은 고기를 구워먹고 물도 마셨습니다.")
+                    
+            inventory['식수'] -= 1
+            inventory['목재'] -= 1
+            inventory['고기'] -= 1
+
 
 
 
@@ -132,6 +143,11 @@ while True:
                     bagsize -= int(gogame[2])
                 else:
                     print("목재가 없습니다.")
+
+
+            else:
+
+                print("잘못된 입력입니다.")
         line()
         onebyone("탐험을 시작합니다.")
 
