@@ -145,9 +145,7 @@ while True:
                     print("목재가 없습니다.")
 
 
-            else:
-
-                print("잘못된 입력입니다.")
+            
         line()
         onebyone("탐험을 시작합니다.")
 
@@ -190,7 +188,7 @@ while True:
             if random.random() < 0.4:
                 animal = random.choice(lclist['동물'])
                 onebyone(f"당신은 {animal}을 발견했습니다!")
-                difficulty = lclist['동물'].index(animal)
+                t['동물'].index(animadifficulty = lclisl)
                 if lclist['동물'][-1] == animal:
                     onebyone(f"당신은 {animal}에게서 도망쳤습니다.")
                     break
@@ -225,6 +223,7 @@ while True:
                     else:
                         onebyone(f"당신은 {animal}를 놓쳤습니다.")
             else:
+                
                 numlc = random.randint(1, 5)
                 sourse = random.choice(lclist['자원'])
                 onebyone(f"당신은 {sourse}을 {numlc}개 발견했습니다!")
@@ -308,7 +307,7 @@ while True:
         onebyone("식사를 하고 하루를 마칩니다. (식수, 목재, 고기 하나씩 필요.)")
         print(f"\n가지고 있는 양 : [ 식수 :{inventory['식수']}, 목재 : {inventory['목재']}, 고기 : {inventory['고기']}]\n")
 
-        if inventory['고기'] > 0 and inventory['식수'] > 0 and inventory['목재'] > 0:
+        if inventory['고기'] > 0 and inventory['식수'] > 0 and inventory['목재']:
             onebyone("당신은 고기를 구워먹고 물도 마셨습니다.")
             
             inventory['식수'] -= 1
