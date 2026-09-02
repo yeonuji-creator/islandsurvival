@@ -188,7 +188,7 @@ while True:
             if random.random() < 0.4:
                 animal = random.choice(lclist['동물'])
                 onebyone(f"당신은 {animal}을 발견했습니다!")
-                t['동물'].index(animadifficulty = lclisl)
+                lclist['동물'].index(animadifficulty = lclisl)
                 if lclist['동물'][-1] == animal:
                     onebyone(f"당신은 {animal}에게서 도망쳤습니다.")
                     break
