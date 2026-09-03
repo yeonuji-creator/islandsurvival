@@ -1,17 +1,16 @@
 '''
-어렵네요
+히히 이것저것 수정했어! 다른 기능들 만들어보자! 제작이라던가, 사냥이라던가.. 원하는 아이템을 더 넣어도 좋고~
 '''
+
 
 
 import pygame
 import time
 import random
 
-# 모듈 불러오기
-
 pygame.init()
 
-# 초기화
+
 
 state = {"day":1, "thirst":100}
 
@@ -27,23 +26,16 @@ inventory = {
         '레전드신기한꽃' : 0
     }
 
-# 인벤토리(딕셔너리)
-
 def onebyone(sentence, s_end = '\n'):
     for i in sentence:
         print(i, end="", flush = True)
         pygame.mixer.music.load("audio/type.mp3")
 
         pygame.mixer.music.play()
-        time.sleep(0.15)
+        time.sleep(0.3)
+        
 
     print(s_end, end = '')
-
-
-def line():
-    print("=" * 50)
-
-# 함수
 
 
 
@@ -53,9 +45,7 @@ name = input()
 
 state["name"] = name
 
-line()
-
-print("당신은 아주 큰 쓰나미에 휩쓸려서 무인도에 왔습니다. 생존하세요.")
+onebyone("당신은 아주 큰 쓰나미에 휩쓸려서 무인도에 왔습니다. 생존하세요.\n")
 
 
 print("""플레이 방법:
@@ -64,28 +54,20 @@ print("""플레이 방법:
 """)
 
 while True:
+    print("=======================================\n\n")
     motion = input(f"""{state['day']}일차: 할 행동을 고르시오.
     1: 사냥
     2: 탐험
     3: 아무것도 안 하고 쉬기
-    """)
+""")
 
     if motion == '1':
-        pass
+        print("연우가 만들거임 :3")
+        continue
     elif motion == '3':
-        print("아무것도 안하고 쉽니다.")
-
-        onebyone("식사를 하고 하루를 마칩니다. (식수, 목재, 고기 하나씩 필요.)")
-        print(f"\n가지고 있는 양 : [ 식수 :{inventory['식수']}, 목재 : {inventory['목재']}, 고기 : {inventory['고기']}]\n")
-        
-        if inventory['고기'] > 0 and inventory['식수'] > 0 and inventory['목재']:
-            onebyone("당신은 고기를 구워먹고 물도 마셨습니다.")
-                    
-            inventory['식수'] -= 1
-            inventory['목재'] -= 1
-            inventory['고기'] -= 1
-
-
+        pass
+    elif motion == 's':
+        pass
 
 
 
@@ -100,7 +82,7 @@ while True:
         
     #여기서부터 선생님 코드임! 2번 탐험~
     elif motion == "2":
-        print("")
+        print("=======================================")
         print("탐험 전 챙길 물건들을 고르시오.")
         bagsize = 30
         bag = {
@@ -116,49 +98,60 @@ while True:
     }
         gogame = ""
         while gogame != "a":
-            
+            print("=======================================")
             print(f"\n남은 공간: {bagsize}\n")
-            print(f"1: 식수 (남은 개수 {inventory['식수']}개)")
-            print(f"2: 고기 (남은 개수 {inventory['고기']}개)")
-            print(f"3: 목재 (남은 개수 {inventory['목재']}개)")
-            gogame = input("\n선택한 물건의 번호와 개수를 입력하시오(예 1,2)\n시작하려면 a를 입력하세요.\n: ")
-            if gogame[0] == "1":
-                if inventory['식수'] >= int(gogame[2]):
-                    inventory['식수'] -= int(gogame[2])
-                    bag['식수'] += int(gogame[2])
-                    bagsize -= int(gogame[2])
+            print(f"1: 식수 (남은 갯수 {inventory['식수']}개)")
+            print(f"2: 고기 (남은 갯수 {inventory['고기']}개)")
+            print(f"3: 목재 (남은 갯수 {inventory['목재']}개)")
+            gogame = input("\n선택한 물건의 번호와 갯수를 입력하시오(예 1,2)\n시작하려면 a를 입력하세요.\n: ")
+            if gogame == "a":
+                print("=======================================")
+                onebyone("탐험을 시작합니다.")
+                break
+            if len(gogame) != 3:
+                print("=======================================")
+                print("잘못된 입력입니다. 다시 입력하세요.")
+                print("=======================================")
+                continue
+            if gogame[1] != "," or gogame[0] not in ["1", "2", "3"] or gogame[2].isalpha():
+                print("=======================================")
+                print("aa잘못된 입력입니다. 다시 입력하세요.")
+                print("=======================================")
+                continue
+            num_item, num_quantity = gogame.split(",")
+            if num_item == "1":
+                if inventory['식수'] >= int(num_quantity):
+                    inventory['식수'] -= int(num_quantity)
+                    bag['식수'] += int(num_quantity)
+                    bagsize -= int(num_quantity)
                 else:
                     print("식수가 없습니다.")
-            elif gogame[0] == "2":
-                if inventory['고기'] >= int(gogame[2]):
-                    inventory['고기'] -= int(gogame[2])
-                    bag['고기'] += int(gogame[2])
-                    bagsize -= int(gogame[2])
+            elif num_item == "2":
+                if inventory['고기'] >= int(num_quantity):
+                    inventory['고기'] -= int(num_quantity)
+                    bag['고기'] += int(num_quantity)
+                    bagsize -= int(num_quantity)
                 else:
                     print("고기가 없습니다.")
-            elif gogame[0] == "3":
-                if inventory['목재'] >= int(gogame[2]):
-                    inventory['목재'] -= int(gogame[2])
-                    bag['목재'] += int(gogame[2])
-                    bagsize -= int(gogame[2])
+            elif num_item == "3":
+                if inventory['목재'] >= int(num_quantity):
+                    inventory['목재'] -= int(num_quantity)
+                    bag['목재'] += int(num_quantity)
+                    bagsize -= int(num_quantity)
                 else:
                     print("목재가 없습니다.")
-
-
-            
-        line()
-        onebyone("탐험을 시작합니다.")
+        
 
         location = {
             '숲' :{
-                '자원': ['목재', '풀', '식수', '산딸기'], 
-                '동물': ['왕토끼', '토끼', '조금큰토끼', '사슴', '늑대']
+                '자원': ['목재', '풀', '식수'], 
+                '동물': ['토끼', '조금큰토끼', '왕토끼', '사슴', '늑대']
                 },
             '해변':{
-                '자원': ['목재', '돌', '식수', '모래'], 
+                '자원': ['목재', '돌', '식수'], 
                 '동물': ['게', '물고기', '왕물고기', '거북이', '상어']
                 }, 
-            '동굴':{"자원": ['돌', '석영', '식수', '목재', '보석'], 
+            '동굴':{"자원": ['돌', '석영', '식수', '목재'], 
                 '동물': ['박쥐', '큰박쥐', '뱀', '도롱뇽','곰']
                 }, 
             '산':{
@@ -166,7 +159,7 @@ while True:
                 '동물': ['산양', '큰산양', '독수리', '바위너구리', '호랑이']
                 }, 
             '강':{'자원': ['식수', '풀', '목재'], 
-                '동물': ['물고기', '개구리', '황소개구리', '수달','피라냐']
+                '동물': ['물고기', '개구리', '황소개구리', '수달','피라니아']
                 }, 
             '호수':{'자원': ['식수', '목재', '풀', '석영'], 
                 '동물': ['개구리', '물고기', '잉어', '비단잉어','여기있으면절대안되는아주아주무서운괴물']
@@ -188,7 +181,7 @@ while True:
             if random.random() < 0.4:
                 animal = random.choice(lclist['동물'])
                 onebyone(f"당신은 {animal}을 발견했습니다!")
-                lclist['동물'].index(animadifficulty = lclisl)
+                difficulty = lclist['동물'].index(animal)
                 if lclist['동물'][-1] == animal:
                     onebyone(f"당신은 {animal}에게서 도망쳤습니다.")
                     break
@@ -223,7 +216,6 @@ while True:
                     else:
                         onebyone(f"당신은 {animal}를 놓쳤습니다.")
             else:
-                
                 numlc = random.randint(1, 5)
                 sourse = random.choice(lclist['자원'])
                 onebyone(f"당신은 {sourse}을 {numlc}개 발견했습니다!")
@@ -292,9 +284,9 @@ while True:
                 else:
                     onebyone("배가 고파서 나아갈 수 없습니다.")
                     break
-            line()
+            print("=======================================")
 
-        line()
+        print("=======================================")
         onebyone("집 가는 중...")
         onebyone("탐험을 마치고 돌아왔습니다.")
         onebyone("다음의 물건을 가지고 왔습니다.")
@@ -302,27 +294,24 @@ while True:
         for name, item in bag.items():
             inventory[name] += item
         onebyone("인벤토리에 저장 완료.")
-        line()
-
-        onebyone("식사를 하고 하루를 마칩니다. (식수, 목재, 고기 하나씩 필요.)")
-        print(f"\n가지고 있는 양 : [ 식수 :{inventory['식수']}, 목재 : {inventory['목재']}, 고기 : {inventory['고기']}]\n")
-
-        if inventory['고기'] > 0 and inventory['식수'] > 0 and inventory['목재']:
-            onebyone("당신은 고기를 구워먹고 물도 마셨습니다.")
-            
-            inventory['식수'] -= 1
-            inventory['목재'] -= 1
-            inventory['고기'] -= 1
-        else:
-            onebyone("저런... 당신은 죽었습니다. 안녕.")
-            break
-        state['day'] += 1
-        state['thirst'] -= 90
-        line()
-        print("\n")
     else:
         print("다시 입력하세요.")
+        continue
 
-        '''
-        이메일 주소(된다면 입력)
-        '''
+    print("=======================================")
+    onebyone("식사를 하고 하루를 마칩니다.)")
+    print("(식수, 목재, 고기 하나씩 필요.)")
+    print(f"\n가지고 있는 양 : [ 식수 :{inventory['식수']}, 목재 : {inventory['목재']}, 고기 : {inventory['고기']}]\n")
+
+    if inventory['고기'] > 0 and inventory['식수'] > 0 and inventory['목재']:
+        onebyone("당신은 고기를 구워먹고 물도 마셨습니다.")
+        
+        inventory['식수'] -= 1
+        inventory['목재'] -= 1
+        inventory['고기'] -= 1
+    else:
+        onebyone("저런... 당신은 죽었습니다. 안녕.")
+        break
+    state['day'] += 1
+    state['thirst'] -= 90
+
