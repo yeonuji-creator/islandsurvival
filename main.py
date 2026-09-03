@@ -111,12 +111,10 @@ while True:
             if len(gogame) < 3:
                 print("=======================================")
                 print("잘못된 입력입니다. 다시 입력하세요.")
-                print("=======================================")
                 continue
             if gogame[1] != "," or gogame[0] not in ["1", "2", "3"] or gogame[2:].isalpha():
                 print("=======================================")
                 print("잘못된 입력입니다. 다시 입력하세요.")
-                print("=======================================")
                 continue
             num_item, num_quantity = gogame.split(",")
             if num_item == "1":
