@@ -1,5 +1,5 @@
 '''
-히히 이것저것 수정했어! 다른 기능들 만들어보자! 제작이라던가, 사냥이라던가.. 원하는 아이템을 더 넣어도 좋고~
+이것저것 수정함 :3 막 제작이라던가.. 사냥이라던가~ 인벤토리 이런거도 만들어보쟈! 엔딩도!
 '''
 
 
@@ -29,9 +29,9 @@ inventory = {
 def onebyone(sentence, s_end = '\n'):
     for i in sentence:
         print(i, end="", flush = True)
-        pygame.mixer.music.load("audio/type.mp3")
+        #pygame.mixer.music.load("audio/type.mp3")
 
-        pygame.mixer.music.play()
+        #pygame.mixer.music.play()
         time.sleep(0.3)
         
 
@@ -67,8 +67,7 @@ while True:
     elif motion == '3':
         pass
     elif motion == 's':
-        print("연우가 만들거임 :3")
-        continue
+        pass
 
 
 
@@ -109,14 +108,14 @@ while True:
                 print("=======================================")
                 onebyone("탐험을 시작합니다.")
                 break
-            if len(gogame) != 3:
+            if len(gogame) < 3:
                 print("=======================================")
                 print("잘못된 입력입니다. 다시 입력하세요.")
                 print("=======================================")
                 continue
-            if gogame[1] != "," or gogame[0] not in ["1", "2", "3"] or gogame[2].isalpha():
+            if gogame[1] != "," or gogame[0] not in ["1", "2", "3"] or gogame[2:].isalpha():
                 print("=======================================")
-                print("aa잘못된 입력입니다. 다시 입력하세요.")
+                print("잘못된 입력입니다. 다시 입력하세요.")
                 print("=======================================")
                 continue
             num_item, num_quantity = gogame.split(",")
@@ -304,7 +303,7 @@ while True:
     print("(식수, 목재, 고기 하나씩 필요.)")
     print(f"\n가지고 있는 양 : [ 식수 :{inventory['식수']}, 목재 : {inventory['목재']}, 고기 : {inventory['고기']}]\n")
 
-    if inventory['고기'] > 0 and inventory['식수'] > 0 and inventory['목재'] > 0:
+    if inventory['고기'] > 0 and inventory['식수'] > 0 and inventory['목재']>0:
         onebyone("당신은 고기를 구워먹고 물도 마셨습니다.")
         
         inventory['식수'] -= 1
