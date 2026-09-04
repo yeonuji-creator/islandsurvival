@@ -61,7 +61,7 @@ while True:
     3: 아무것도 안 하고 쉬기
 """)
 
-    if motion == '1':
+    if motion == '3':
         print("아무것도 안하고 쉽니다.")
 
         time.sleep(1)
@@ -71,7 +71,7 @@ while True:
         
         if inventory['고기'] > 0 and inventory['식수'] > 0 and inventory['목재']:
             onebyone("당신은 고기를 구워먹고 물도 마셨습니다.")
-    elif motion == '3':
+    elif motion == '1':
         pass
     elif motion == 's':
         pass
