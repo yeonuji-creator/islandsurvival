@@ -15,7 +15,7 @@ pygame.init()
 state = {"day":1, "thirst":100}
 
 inventory = {
-        '식수': 3,
+        '물': 3,
         '고기' : 3,
         '목재' : 3,
         '돌' : 0,
