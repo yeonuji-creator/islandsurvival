@@ -1,5 +1,6 @@
 from game_text import onebyone
 import random, time
+import pygame
 def start_motion2(inventory):
     BAG_CAPACITY = 30
 
