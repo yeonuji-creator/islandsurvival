@@ -77,12 +77,25 @@ while True:
         motion2.start_motion2(inventory)
 
     else:
-        onebyone("저런... 당신은 죽었습니다. 안녕.")
-        pygame.mixer.music.load("audio/주금.mp3")
+        print("다시 입력하세요.")
+        continue
 
-        pygame.mixer.music.play()
-        time.sleep(0.3)
+    print("=======================================")
+    onebyone("식사를 하고 하루를 마칩니다.)")
+    print("(물, 목재, 고기 하나씩 필요.)")
+    print(f"\n가지고 있는 양 : [ 물 :{inventory['물']}, 목재 : {inventory['목재']}, 고기 : {inventory['고기']}]\n")
+
+    if inventory['고기'] > 0 and inventory['물'] > 0 and inventory['목재']>0:
+        onebyone("당신은 고기를 구워먹고 물도 마셨습니다.")
         
+        inventory['물'] -= 1
+        inventory['목재'] -= 1
+        inventory['고기'] -= 1
+    else:
+        onebyone("저런... 당신은 죽었습니다. 안녕.")
         break
     state['day'] += 1
     state['thirst'] -= 90
+        
+pygame.mixer.music.load("audio/주금.mp3")        
+pygame.mixer.music.play()
