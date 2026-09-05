@@ -78,7 +78,7 @@ while True:
 
     else:
         onebyone("저런... 당신은 죽었습니다. 안녕.")
-        pygame.mixer.music.load("주금/type.mp3")
+        pygame.mixer.music.load("audio/주금.mp3")
 
         pygame.mixer.music.play()
         time.sleep(0.3)
