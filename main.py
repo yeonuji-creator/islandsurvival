@@ -7,7 +7,6 @@
 import pygame
 import time
 import random
-from game_text import onebyone
 
 pygame.init()
 
@@ -325,6 +324,11 @@ while True:
         inventory['고기'] -= 1
     else:
         onebyone("저런... 당신은 죽었습니다. 안녕.")
+        pygame.mixer.music.load("주금/type.mp3")
+
+        pygame.mixer.music.play()
+        time.sleep(0.3)
+        
         break
     state['day'] += 1
     state['thirst'] -= 90
