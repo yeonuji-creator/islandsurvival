@@ -7,6 +7,7 @@
 import pygame
 import time
 import random
+from game_text import onebyone
 
 pygame.init()
 
