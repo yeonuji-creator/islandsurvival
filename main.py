@@ -29,9 +29,9 @@ inventory = {
 def onebyone(sentence, s_end = '\n'):
     for i in sentence:
         print(i, end="", flush = True)
-        #pygame.mixer.music.load("audio/type.mp3")
+        pygame.mixer.music.load("audio/type.mp3")
 
-        #pygame.mixer.music.play()
+        pygame.mixer.music.play()
         time.sleep(0.3)
         
 
@@ -66,11 +66,7 @@ while True:
 
         time.sleep(1)
 
-        onebyone("식사를 하고 하루를 마칩니다. (식수, 목재, 고기 하나씩 필요.)")
-        print(f"\n가지고 있는 양 : [ 물 :{inventory['식수']}, 목재 : {inventory['목재']}, 고기 : {inventory['고기']}]\n")
-        
-        if inventory['고기'] > 0 and inventory['물'] > 0 and inventory['목재']:
-            onebyone("당신은 고기를 구워먹고 물도 마셨습니다.")
+        #아래의 식사 코드는 선택지와 관계없이 공통으로 실행되어서, 비워놓아도 괜찮음!
     elif motion == '1':
         pass
     elif motion == 's':
@@ -314,6 +310,7 @@ while True:
         print("다시 입력하세요.")
         continue
 
+    #아래의 식사 코드는 선택지와 관계없이 공통으로 실행되어서, 비워놓아도 괜찮음!
     print("=======================================")
     onebyone("식사를 하고 하루를 마칩니다.)")
     print("(물, 목재, 고기 하나씩 필요.)")
