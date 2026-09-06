@@ -28,14 +28,7 @@ inventory = {
         '레전드신기한꽃' : 0
     }
 
-def onebyone(sentence, s_end = '\n'):
-    for i in sentence:
-        print(i, end="", flush = True)
-        pygame.mixer.music.load("audio/type.mp3")
 
-        pygame.mixer.music.play()
-        time.sleep(0.3)
-        
 
     print(s_end, end = '')
 
