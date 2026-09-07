@@ -19,7 +19,7 @@ inventory = {
 def craft(inventory):
     g.onebyone("제작을 시작합니다.")
 
-    g.onebyone("제작 물건: 1. 나무 검(목재2), 2. 풀 갑옷(풀3)", "")
+    g.onebyone("제작 물건: 1. 나무 검(목재2), 2. 가죽 갑옷(풀3)", "")
 
     g.onebyone("제작할 물건을 고르시오.", "")
     craft_some = input()
@@ -33,9 +33,9 @@ def craft(inventory):
             g.onebyone("재료가 부족합니다.")
 
     elif craft_some == "2":
-        if inventory["풀"] >= 3:
-            g.onebyone("풀 갑옷을 제작했습니다.")
-            inventory["풀"] -= 3
+        if inventory["가죽"] >= 3:
+            g.onebyone("가죽 갑옷을 제작했습니다.")
+            inventory["가죽"] -= 3
 
         else:
             g.onebyone("재료가 부족합니다.")
