@@ -30,11 +30,6 @@ inventory = {
 
 
 
-    print(s_end, end = '')
-
-
-
-
 onebyone("당신의 닉네임을 입력하십시오: ",'')
 name = input()
 
