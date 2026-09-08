@@ -59,7 +59,7 @@ while True:
     elif motion == '3':
         print("아무것도 안하고 쉽니다.")
         time.sleep(1)
- 
+
     #개발 완료
     elif motion == "2":
         motion2.start_motion2(inventory)

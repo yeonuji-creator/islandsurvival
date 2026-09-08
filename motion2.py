@@ -2,13 +2,18 @@ from game_text import onebyone
 import random, time
 import pygame
 def start_motion2(inventory):
+
+    #가방의 최대 공간
     BAG_CAPACITY = 30
 
+    #남은 가방공간을 계산하는 코드~
     def remaining_space(bag):
         return BAG_CAPACITY - sum(bag.values())
 
     print("=======================================")
     print("탐험 전 챙길 물건들을 고르시오.")
+
+    #원래의 인벤토리랑 다르게, 탐험에 필요한 물건들을 따로 저장할 장소를 만들었어. 가방!
     bag = {
         '물': 0,
         '고기': 0,
@@ -20,29 +25,56 @@ def start_motion2(inventory):
         '아름다운결정': 0,
         '레전드신기한꽃': 0
     }
+
+    #입력받을 값이야! 시작은 a로, 물건 가져가는건 '2,1'이렇게~
     gogame = ""
-    while gogame != "a":
+
+    while True:
         print("=======================================")
         print(f"\n남은 공간: {remaining_space(bag)}\n")
+        #인벤토리에서 갯수를 새어서 가져오기!
         print(f"1: 물 (남은 갯수 {inventory['물']}개)")
         print(f"2: 고기 (남은 갯수 {inventory['고기']}개)")
         print(f"3: 목재 (남은 갯수 {inventory['목재']}개)")
         gogame = input("\n선택한 물건의 번호와 갯수를 입력하시오(예 1,2)\n시작하려면 a를 입력하세요.\n: ")
+
+        #a입력하면 시작
         if gogame == "a":
             print("=======================================")
             onebyone("탐험을 시작합니다.")
             break
+
+        #여기서부터는~ '숫자,숫자' 형식이 맞는지 체크하는 구간이야! 
+
+        #처음에는 , 가 들어있는지 체크
         if "," not in gogame:
             print("=======================================")
             print("잘못된 입력입니다. 다시 입력하세요.")
             continue
-        num_item, num_quantity = gogame.split(",", 1)
-        if not num_item in ['1', '2', '3'] or not num_quantity.isdigit():
+
+        # ,있어? 그렇다면 ,를 기준으로 잘라라! 결과물은 리스트야~
+        num_list = gogame.split(",")
+
+        #그러면 ['1' ,'2'] 이렇게 숫자가 2개 들어간 리스트가 나와야하는데, 혹시 숫자가 2개 아니면 잘못입력한거야!
+        if len(num_list) != 2:
             print("=======================================")
             print("잘못된 입력입니다. 다시 입력하세요.")
             continue
+
+        #2개 맞아? 그러면 하나씩 다른 변수에 옮겨담자.. ['1', '2']였다면, 1번 변수에는 '1', 2번 변수에는 '2'가 들어가!
+        num_item, num_quantity = num_list
+
+        # 처음 숫자가 1,2,3 중에 하나인가를 체크, 그리고 두번째 숫자는 '물건 갯수'니까 숫자가 맞나(isdigit)를 체크
+        if not num_item in ['1', '2', '3'] or not num_quantity.isdigit(): 
+            print("=======================================")
+            print("잘못된 입력입니다. 다시 입력하세요.")
+            continue
+
+        #모든 조건이 맞다면 이제 문자열숫자에서('6' 같은거) 진짜 숫자(6 같은거)로 바꿔라
         num_item = int(num_item)
         num_quantity = int(num_quantity)
+
+        #근데 혹시 0보다 작은걸 입력했었다면..? 안돼!
         if num_quantity <= 0:
             print("=======================================")
             print("수량은 1 이상이어야 합니다.")
