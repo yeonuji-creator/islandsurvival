@@ -19,7 +19,7 @@ inventory = {
 def craft(inventory):
     g.onebyone("제작을 시작합니다.")
 
-    g.onebyone("제작 물건: 1. 나무 검(목재2), 2. 가죽 갑옷(풀3)", "")
+    g.onebyone("제작 물건: 1. 나무 검(목재2), 2. 가죽 갑옷(가죽3)", "")
 
     g.onebyone("제작할 물건을 고르시오.", "")
     craft_some = input()
