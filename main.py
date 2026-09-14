@@ -52,9 +52,9 @@ while True:
 """)
 
     if motion == '1':
-        pass
+        continue
     elif motion == 's':
-        pass
+        continue
             
     elif motion == '3':
         print("아무것도 안하고 쉽니다.")
