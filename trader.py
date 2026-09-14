@@ -163,39 +163,7 @@ def sell(inventory):
 
 
 
-    elif trader == "항상웃고있는핸드폰":
-        g.onebyone("안녕하세요!!! 저는 아무 물건을 팔아주시면 돈을 드리겠습니다.")
-        g.onebyone("팔 물건을 고르세요: ")
-        sell_some = input()
-
-        try:
-            if inventory[sell_some] > 0:
-                g.onebyone("팔 개수를 고르세요: ", "")
-                sell_num = int(input())
-
-
-                if sell_num <= inventory[sell_some]:
-                    pygame.mixer.music.load("audio/trader.mp3")
-                    g.onebyone("감사합니다.")
-
-                    inventory[sell_some] -= sell_num
-
-                    inventory["돈"] += sell_num
-
-                    
-
-
-                else:
-                    g.onebyone("하하하하.물건이 팔려는 개수만큼 없잖아.")
-
-
-            else:
-                g.onebyone("하하하하.0개는 못 팔잖아.")
-
-
-
-        except KeyError:
-            g.onebyone(f"하하하하.{sell_some}(이)라는 물건 없잖아.")
+    
 
 
     
